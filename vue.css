@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"),
+    url("fonts/HelveticaBold.otf"), url("fonts/HelveticaNeue.OTF");
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("fonts/Poppins-Regular.ttf")
+}
+
+body {
+    margin:0;
+}
+
+body,button {
+    font-family: "Poppins";
+}
+
+.container {
+  display: grid;
+  grid-template-areas: "movie sidebar";
+  grid-template-columns: 1fr 25em;
+}
+
+#app1 {
+  grid-area: movie;
+}
+
+#app2 {
+    height: 100vh;
+    /* background-color: rgba(255, 0, 0, 0.233); */
+  grid-area: sidebar;
+  position: relative;
+  
+  }
+
+  #flex {
+ position:absolute;
+ top:10em;
+      margin:5em;
+    font-family: "Helvetica";
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #flex div {
+      color: rgb(97, 97, 97);
+      padding: .5em;
+      letter-spacing: -.8px;
+      font-size: 1em;
+      transition: .5s all;
+  }
+
+  #flex div.activable:hover {
+      color: rgb(120, 206, 255);
+      cursor: pointer;
+  }
+
+  #flex div.active {
+      color:orange
+  }
+
+  .vuesax-input {
+    width: 200px;
+    top:7em;
+    left:5em;
+    position: absolute;
+    font-family: 'Helvetica';
+  }
+
+  input{
+    font-family: "Helvetica";
+  }

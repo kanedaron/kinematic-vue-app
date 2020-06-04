@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kinematic - Movie Curator</title>
+    <link
+      href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="vue.css" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="app1">
+        <!-- ERROR ALERT -->
+        <vs-dialog width="550px" not-center v-model="error">
+          <div class="con-content">
+            <p>{{ error }}</p>
+          </div>
+          <template #footer>
+            <div class="con-footer">
+              <vs-button @click="error=false" transparent> Ok </vs-button>
+            </div>
+          </template>
+        </vs-dialog>
+        <!-- END OF ERROR ALERT -->
+        <vs-dialog blur v-model="movie"></vs-dialog>
+        <vs-button>Kinematic - Movie Curator</vs-button>
+      </div>
+      <div id="app2">
+        <div class="vuesax-input">
+          <div class="center content-inputs">
+            <vs-input
+              color="#ffa500"
+              v-model="value"
+              label-placeholder="Search"
+              type="search"
+              border
+            />
+          </div>
+        </div>
+        <div id="flex">
+          <div>Sort by</div>
+          <div class="activable">Year</div>
+          <div class="activable">Type</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+    <script src="vue.js"></script>
+  </body>
+</html>

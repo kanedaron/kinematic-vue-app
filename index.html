@@ -27,7 +27,39 @@
           </template>
         </vs-dialog>
         <!-- END OF ERROR ALERT -->
-        <vs-dialog blur v-model="movie"></vs-dialog>
+        <ul>
+          <vs-button shadow size="xl" @click="selectedMovie = movie" class="list-item" v-bind:key="index" v-for="(movie,index) in cinema">
+              <img v-bind:src="movie.images['Poster Art'].url" alt="">
+            <div class ="card-text">
+            <h4>{{movie.title}}</h4>A {{movie.programType}} from {{movie.releaseYear}}
+            </div>
+          </vs-button>
+      </ul>
+
+        <vs-row>
+          <vs-col
+            :key="index"
+            v-for="col,index in 4"
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            w="3"
+          >
+            25%
+          </vs-col>
+        </vs-row>
+        <!-- START OF TRANSITION TEMPLATE(USE LATER) -->
+        <!-- <transition-group name="list" tag="ul">
+          <li class="list-item" v-bind:key="index" v-for="(movie,index) in cinema">
+            {{movie.title}}{{movie.releaseYear}}
+          </li>
+        </transition-group> -->
+        <!-- END OF TRANSITION TEMPLATE -->
+        <vs-dialog blur v-model="selectedMovie">
+           <img height="600px" v-if="selectedMovie" v-bind:src="selectedMovie.images['Poster Art'].url" >
+          <h3>{{selectedMovie.title}}</h3>
+          <p>{{selectedMovie.releaseYear}}</p>
+        </vs-dialog>
         <vs-button>Kinematic - Movie Curator</vs-button>
       </div>
       <div id="app2">
@@ -43,9 +75,21 @@
           </div>
         </div>
         <div id="flex">
-          <div>Sort by</div>
+          <div class="title">Sort by</div>
+          <div class="activable">Name</div>
           <div class="activable">Year</div>
           <div class="activable">Type</div>
+          <div class="title"></div>
+          <div class="title"></div>
+          <div class="title">Filter by Type</div>
+          <div class="activable">Movie</div>
+          <div class="activable">Series</div>
+          <div class="title"></div>
+          <div class="title"></div>
+          <div class="title">Filter by Year</div>
+          <div class="activable">1990-2000</div>
+          <div class="activable">2000-2010</div>
+          <div class="activable">2010-2020</div>
         </div>
       </div>
     </div>

@@ -4,9 +4,10 @@ var app1 = new Vue({
     cinema: [],
     filters: {},
     error: false,
+    selectedMovie:false
   },
   created: function () {
-    const loading = this.$vs.loading({ type: "square" });
+    const loading = this.$vs.loading({ type: "square",color:"#ffa500" });
     fetch(
       "https://raw.githubusercontent.com/StreamCo/react-coding-challenge/master/feed/sample.json"
     )

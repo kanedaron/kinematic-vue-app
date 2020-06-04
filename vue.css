@@ -36,7 +36,7 @@ body,button {
   }
 
   #flex {
- position:absolute;
+ position:fixed;
  top:10em;
       margin:5em;
     font-family: "Helvetica";
@@ -53,6 +53,10 @@ body,button {
       transition: .5s all;
   }
 
+  #flex div.title {
+    /* font-size: 1.2em; */
+  }
+
   #flex div.activable:hover {
       color: rgb(120, 206, 255);
       cursor: pointer;
@@ -65,11 +69,65 @@ body,button {
   .vuesax-input {
     width: 200px;
     top:7em;
-    left:5em;
-    position: absolute;
+    right:7.5em;
+    position: fixed;
     font-family: 'Helvetica';
   }
 
   input{
     font-family: "Helvetica";
+  }
+
+  
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .list-item {
+    margin:30px;
+    margin-top: 80px;
+    overflow: visible;
+  }
+
+  .list-item div {
+    width:250px;
+    height:300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list-item img {
+    border-radius: 1em;
+    height: 200px;
+    position: absolute;
+    margin-top: -100px;
+    box-shadow: 10px 9px 55px 0px rgba(0,0,0,0.33);
+    box-shadow: 10px 9px 38px -8px rgba(0,0,0,0.15);
+  }
+
+  .card-text {
+    position: absolute;
+    top:175px;
+    font-size:.7em;
+  }
+
+  .card-text h4 {
+    font-size: 1.4em;
+    margin-bottom: .3em;
+  }
+
+
+  /* animate */
+
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+  .list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .list-move {
+    transition: transform 1s;
   }

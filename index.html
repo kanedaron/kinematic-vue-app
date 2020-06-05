@@ -27,27 +27,16 @@
           </template>
         </vs-dialog>
         <!-- END OF ERROR ALERT -->
-        <ul>
-          <vs-button shadow size="xl" @click="selectedMovie = movie" class="list-item" v-bind:key="index" v-for="(movie,index) in cinema">
+        <transition-group name="list" tag="ul">
+          <vs-button shadow size="xl" @click="selectedMovie = movie" class="list-item" v-bind:key="movie.title" v-for="movie in cinema2">
               <img v-bind:src="movie.images['Poster Art'].url" alt="">
             <div class ="card-text">
             <h4>{{movie.title}}</h4>A {{movie.programType}} from {{movie.releaseYear}}
             </div>
           </vs-button>
+        </transition-group>
       </ul>
 
-        <vs-row>
-          <vs-col
-            :key="index"
-            v-for="col,index in 4"
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            w="3"
-          >
-            25%
-          </vs-col>
-        </vs-row>
         <!-- START OF TRANSITION TEMPLATE(USE LATER) -->
         <!-- <transition-group name="list" tag="ul">
           <li class="list-item" v-bind:key="index" v-for="(movie,index) in cinema">
@@ -60,14 +49,13 @@
           <h3>{{selectedMovie.title}}</h3>
           <p>{{selectedMovie.releaseYear}}</p>
         </vs-dialog>
-        <vs-button>Kinematic - Movie Curator</vs-button>
       </div>
       <div id="app2">
         <div class="vuesax-input">
           <div class="center content-inputs">
             <vs-input
               color="#ffa500"
-              v-model="value"
+              v-model="search"
               label-placeholder="Search"
               type="search"
               border

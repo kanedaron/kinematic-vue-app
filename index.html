@@ -64,20 +64,23 @@
         </div>
         <div id="flex">
           <div class="title">Sort by</div>
-          <div class="activable">Name</div>
-          <div class="activable">Year</div>
-          <div class="activable">Type</div>
+          <div class="activable" v-bind:class="{active:this.filters.sort==='name'}" v-on:click="filters.sort='name'">Name</div>
+          <div class="activable" v-bind:class="{active:this.filters.sort==='year'}" v-on:click="filters.sort='year'">Year</div>
+          <div class="activable" v-bind:class="{active:this.filters.sort==='type'}" v-on:click="filters.sort='type'">Type</div>
           <div class="title"></div>
           <div class="title"></div>
           <div class="title">Filter by Type</div>
-          <div class="activable">Movie</div>
-          <div class="activable">Series</div>
+          <div class="activable" v-bind:class="{active: this.filters.type==='movie'}" v-on:click="filters.type='movie'">Movie</div>
+          <div class="activable" v-bind:class="{active: this.filters.type==='series'}" v-on:click="filters.type='series'">Series</div>
           <div class="title"></div>
           <div class="title"></div>
           <div class="title">Filter by Year</div>
-          <div class="activable">1990-2000</div>
-          <div class="activable">2000-2010</div>
-          <div class="activable">2010-2020</div>
+          <div class="activable" v-bind:class="{active: this.filters.year==='2000'}" v-on:click="filters.year='2000'">1990-2000</div>
+          <div class="activable" v-bind:class="{active: this.filters.year==='2010'}" v-on:click="filters.year='2010'">2000-2010</div>
+          <div class="activable" v-bind:class="{active: this.filters.year==='2020'}" v-on:click="filters.year='2020'">2010-2020</div>
+          <div class="title"></div>
+          <div class="title"></div>
+          <div class="activable title" v-on:click='filters={sort:"",type:"",year:"",}'>Reset all filters</div>
         </div>
       </div>
     </div>

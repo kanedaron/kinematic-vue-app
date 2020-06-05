@@ -53,16 +53,16 @@ body,button {
       transition: .5s all;
   }
 
-  #flex div.title {
-    /* font-size: 1.2em; */
-  }
+  /* #flex div.title {
+    font-size: 1.2em;
+  } */
 
   #flex div.activable:hover {
       color: rgb(120, 206, 255);
       cursor: pointer;
   }
 
-  #flex div.active {
+  #flex div.active, #flex div.active:hover {
       color:orange
   }
 
@@ -130,4 +130,28 @@ body,button {
 
   .list-move {
     transition: transform 1s;
+  }
+
+  @media (max-width: 900px){
+    .container{
+      grid-template-columns: auto;
+      grid-template-rows: 800px auto;
+      grid-template-areas:
+        "sidebar"
+        "movie";
+    }
+
+    #flex {
+      position: absolute;
+    }
+    .vuesax-input {
+      position: absolute;
+      left:5em;
+    }
+    .vs-dialog div img {
+      height:300px;
+    }
+    .vs-dialog div {
+      text-align: center;
+    }
   }

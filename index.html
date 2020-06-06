@@ -1,92 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Kinematic - Movie Curator</title>
-    <link
-      href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="vue.css" />
-    <meta
-      name="viewport"
-      content="initial-scale=1, maximum-scale=1, user-scalable=no"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <div id="app1">
-        <!-- ERROR ALERT -->
-        <vs-dialog width="550px" not-center v-model="error">
-          <div class="con-content">
-            <p>{{ error }}</p>
+
+<head>
+  <title>Kinematic - Movie Curator</title>
+  <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="vue.css" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+</head>
+
+<body>
+  <div class="container">
+    <div id="app1">
+      <!-- ERROR ALERT -->
+      <vs-dialog width="550px" not-center v-model="error">
+        <div class="con-content">
+          <p>{{ error }}</p>
+        </div>
+        <template #footer>
+          <div class="con-footer">
+            <vs-button @click="error=false" transparent> Ok </vs-button>
           </div>
-          <template #footer>
-            <div class="con-footer">
-              <vs-button @click="error=false" transparent> Ok </vs-button>
-            </div>
-          </template>
-        </vs-dialog>
-        <!-- END OF ERROR ALERT -->
-        <transition-group name="list" tag="ul">
-          <vs-button shadow size="xl" @click="selectedMovie = movie" class="list-item" v-bind:key="movie.title" v-for="movie in cinema2">
-              <img v-bind:src="movie.images['Poster Art'].url" alt="">
-            <div class ="card-text">
+        </template>
+      </vs-dialog>
+      <!-- END OF ERROR ALERT -->
+      <transition-group name="list" tag="ul">
+        <vs-button shadow size="xl" @click="selectedMovie = movie" class="list-item" v-bind:key="movie.title"
+          v-for="movie in cinema2">
+          <img v-bind:src="movie.images['Poster Art'].url" alt="">
+          <div class="card-text">
             <h4>{{movie.title}}</h4>A {{movie.programType}} from {{movie.releaseYear}}
-            </div>
-          </vs-button>
-        </transition-group>
+          </div>
+        </vs-button>
+      </transition-group>
       </ul>
 
-        <!-- START OF TRANSITION TEMPLATE(USE LATER) -->
-        <!-- <transition-group name="list" tag="ul">
+      <!-- START OF TRANSITION TEMPLATE(USE LATER) -->
+      <!-- <transition-group name="list" tag="ul">
           <li class="list-item" v-bind:key="index" v-for="(movie,index) in cinema">
             {{movie.title}}{{movie.releaseYear}}
           </li>
         </transition-group> -->
-        <!-- END OF TRANSITION TEMPLATE -->
-        <vs-dialog blur v-model="selectedMovie">
-           <img height="600px" v-if="selectedMovie" v-bind:src="selectedMovie.images['Poster Art'].url" >
-          <h3>{{selectedMovie.title}}</h3>
-          <p>{{selectedMovie.releaseYear}}</p>
-        </vs-dialog>
+      <!-- END OF TRANSITION TEMPLATE -->
+      <vs-dialog blur v-model="selectedMovie">
+        <img height="600px" v-if="selectedMovie" v-bind:src="selectedMovie.images['Poster Art'].url">
+        <h3>{{selectedMovie.title}}</h3>
+        <p>{{selectedMovie.releaseYear}}</p>
+      </vs-dialog>
+    </div>
+    <div id="app2">
+      <div class="vuesax-input">
+        <div class="center content-inputs">
+          <vs-input color="#ffa500" v-model="search" label-placeholder="Search" type="search" border />
+        </div>
       </div>
-      <div id="app2">
-        <div class="vuesax-input">
-          <div class="center content-inputs">
-            <vs-input
-              color="#ffa500"
-              v-model="search"
-              label-placeholder="Search"
-              type="search"
-              border
-            />
-          </div>
+      <div id="flex">
+        <div class="title">Sort by</div>
+        <div class="activable" v-bind:class="{active:this.filters.sort==='name'}" v-on:click="filters.sort='name'">Name
         </div>
-        <div id="flex">
-          <div class="title">Sort by</div>
-          <div class="activable" v-bind:class="{active:this.filters.sort==='name'}" v-on:click="filters.sort='name'">Name</div>
-          <div class="activable" v-bind:class="{active:this.filters.sort==='year'}" v-on:click="filters.sort='year'">Year</div>
-          <div class="activable" v-bind:class="{active:this.filters.sort==='type'}" v-on:click="filters.sort='type'">Type</div>
-          <div class="title"></div>
-          <div class="title"></div>
-          <div class="title">Filter by Type</div>
-          <div class="activable" v-bind:class="{active: this.filters.type==='movie'}" v-on:click="filters.type='movie'">Movie</div>
-          <div class="activable" v-bind:class="{active: this.filters.type==='series'}" v-on:click="filters.type='series'">Series</div>
-          <div class="title"></div>
-          <div class="title"></div>
-          <div class="title">Filter by Year</div>
-          <div class="activable" v-bind:class="{active: this.filters.year==='2000'}" v-on:click="filters.year='2000'">1990-2000</div>
-          <div class="activable" v-bind:class="{active: this.filters.year==='2010'}" v-on:click="filters.year='2010'">2000-2010</div>
-          <div class="activable" v-bind:class="{active: this.filters.year==='2020'}" v-on:click="filters.year='2020'">2010-2020</div>
-          <div class="title"></div>
-          <div class="title"></div>
-          <div class="activable title" v-on:click='filters={sort:"",type:"",year:"",}'>Reset all filters</div>
+        <div class="activable" v-bind:class="{active:this.filters.sort==='year'}" v-on:click="filters.sort='year'">Year
         </div>
+        <div class="activable" v-bind:class="{active:this.filters.sort==='type'}" v-on:click="filters.sort='type'">Type
+        </div>
+        <div class="title"></div>
+        <div class="title"></div>
+        <div class="title">Filter by Type</div>
+        <div class="activable" v-bind:class="{active: this.filters.type==='movie'}" v-on:click="filters.type='movie'">
+          Movie</div>
+        <div class="activable" v-bind:class="{active: this.filters.type==='series'}" v-on:click="filters.type='series'">
+          Series</div>
+        <div class="title"></div>
+        <div class="title"></div>
+        <div class="title">Filter by Year</div>
+        <div class="activable" v-bind:class="{active: this.filters.year==='2000'}" v-on:click="filters.year='2000'">
+          1990-2000</div>
+        <div class="activable" v-bind:class="{active: this.filters.year==='2010'}" v-on:click="filters.year='2010'">
+          2000-2010</div>
+        <div class="activable" v-bind:class="{active: this.filters.year==='2020'}" v-on:click="filters.year='2020'">
+          2010-2020</div>
+        <div class="title"></div>
+        <div class="title"></div>
+        <div class="activable title" v-on:click='filters={sort:"",type:"",year:"",}'>Reset all filters</div>
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
-    <script src="vue.js"></script>
-  </body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+  <script src="vue.js"></script>
+</body>
+
 </html>
